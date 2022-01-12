@@ -1,23 +1,31 @@
 import logo from './logo.svg';
+import Button from '@mui/material/Button';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <div className='navbar-react'>
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      </div>
+
+      <div className='app__main'>
+        <div>
+          <h1> Login </h1>
+          <p>Entre com passuord</p>
+        </div>
+        <input></input>
+        <input></input>
+        <Button variant="contained">Hello World</Button>
+      </div>
+
+      <div>
+      </div>
+      <div className='app__footer'>
+
+      </div>
     </div>
   );
 }
