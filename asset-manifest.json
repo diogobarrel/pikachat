@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pikachat/static/css/main.b2deba13.css",
-    "main.js": "/pikachat/static/js/main.cefa4303.js",
+    "main.css": "/pikachat/static/css/main.0f428069.css",
+    "main.js": "/pikachat/static/js/main.b1711166.js",
     "static/js/787.68b06b76.chunk.js": "/pikachat/static/js/787.68b06b76.chunk.js",
     "static/media/logo.svg": "/pikachat/static/media/logo.7708877c4a26acc9b4fa1314ba4a4802.svg",
     "index.html": "/pikachat/index.html",
-    "main.b2deba13.css.map": "/pikachat/static/css/main.b2deba13.css.map",
-    "main.cefa4303.js.map": "/pikachat/static/js/main.cefa4303.js.map",
+    "main.0f428069.css.map": "/pikachat/static/css/main.0f428069.css.map",
+    "main.b1711166.js.map": "/pikachat/static/js/main.b1711166.js.map",
     "787.68b06b76.chunk.js.map": "/pikachat/static/js/787.68b06b76.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b2deba13.css",
-    "static/js/main.cefa4303.js"
+    "static/css/main.0f428069.css",
+    "static/js/main.b1711166.js"
   ]
 }
