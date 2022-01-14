@@ -69,7 +69,6 @@ export default class LoginApp extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1> Let's get started now! </h1>
               <p>
-                {" "}
                 Or <b>create an account</b> and start chatting{" "}
               </p>
               <div className="app-login--button">

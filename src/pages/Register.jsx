@@ -8,10 +8,9 @@ import InputAdornment from '@mui/material/InputAdornment'
 import { AccountCircle, Lock } from '@mui/icons-material'
 
 import { TextField } from '@mui/material'
+import { withFirebase } from '../components/Firebase/context'
 
-import { useAuth } from '../context/AuthContext'
-
-export default class RegisterApp extends Component {
+class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -30,8 +29,7 @@ export default class RegisterApp extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault()
-    debugger
-    const { signup } = useAuth()
+
     if (!this.validateForm()) {
       this.setState({
         password: '',
@@ -40,11 +38,24 @@ export default class RegisterApp extends Component {
 
       return
     }
-
-    signup(this.state.email, this.state.password)
+    debugger
+    this.props.firebase
+      .signup(this.state.email, this.state.password)
+      .then((response) => {
+        debugger
+        console.log(response)
+      })
+      .catch((err) => console.err(err))
   }
 
   render() {
+    const { email, password, passwordConfirm } = this.state
+
+    const invalidInput =
+      password !== passwordConfirm ||
+      password === '' ||
+      email === ''
+
     return (
       <div className="app">
         <div className="app__base">
@@ -111,7 +122,7 @@ export default class RegisterApp extends Component {
                   }
                   value={this.state.passwordConfirm}
                   type="password"
-                  label="Password"
+                  label=" Confirm Password"
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -122,7 +133,12 @@ export default class RegisterApp extends Component {
                   variant="standard"
                 />
                 <div className="app-login__button">
-                  <Button variant="contained" color="secondary" type="submit">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    type="submit"
+                    disabled={invalidInput}
+                  >
                     Register
                   </Button>
                 </div>
@@ -136,3 +152,7 @@ export default class RegisterApp extends Component {
     )
   }
 }
+
+const RegisterApp = withFirebase(Register)
+
+export default RegisterApp
