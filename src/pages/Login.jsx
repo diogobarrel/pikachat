@@ -24,20 +24,12 @@ export default class LoginApp extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-login-page">
+      <div className="app">
+        <div className="app__base">
           <div className="navbar-react"></div>
 
-          <div className="app__login">
-            <div className="app__login--header">
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1> Let's get started now! </h1>
-              <p>
-                {" "}
-                Or <b>create an account</b> and start chatting{" "}
-              </p>
-            </div>
-            <div className="app__login--select">
+          <div className="app__main app-login">
+          <div className="app-login--select">
               <TextField
                 id="login-textfield"
                 label="Login"
@@ -55,7 +47,6 @@ export default class LoginApp extends Component {
                 id="password-textfield"
                 type="password"
                 label="Password"
-                color="secondary"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -65,15 +56,26 @@ export default class LoginApp extends Component {
                 }}
                 variant="standard"
               />
-            </div>
-            <div className="app__login--button">
-              <Button variant="contained" color="warning">
+
+              <Button variant="contained" >
                 Login
               </Button>
             </div>
+            <div className="app-login__banner">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1> Let's get started now! </h1>
+              <p>
+                {" "}
+                Or <b>create an account</b> and start chatting{" "}
+              </p>
+              <div className="app-login--button">
+              <Button variant="contained" color="secondary">
+                Register
+              </Button>
+            </div>
+            </div>
           </div>
 
-          <div></div>
           <div className="app__footer"></div>
         </div>
       </div>
