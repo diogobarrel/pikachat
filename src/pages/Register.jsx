@@ -38,11 +38,9 @@ class Register extends Component {
 
       return
     }
-    debugger
     this.props.firebase
       .register(this.state.email, this.state.password)
       .then((response) => {
-        debugger
         console.log(response)
       })
       .catch((err) => console.err(err))

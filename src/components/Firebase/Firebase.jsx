@@ -26,8 +26,7 @@ class Firebase {
   // *** Auth API ***
   register = (email, password) => auth.createUserWithEmailAndPassword(this.auth, email, password)
 
-  doSignInWithEmailAndPassword = (email, password) =>
-    auth.signInWithEmailAndPassword(this.auth, email, password)
+  login = (email, password) => auth.signInWithEmailAndPassword(this.auth, email, password)
 
   doSignOut = () => this.auth.signOut()
 

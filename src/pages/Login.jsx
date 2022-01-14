@@ -11,15 +11,42 @@ import InputAdornment from '@mui/material/InputAdornment'
 
 import { AccountCircle, Lock } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+import { withFirebase } from '../components/Firebase/context'
 
-export default class LoginApp extends Component {
+class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
       email: '',
       password: '',
       loading: false,
-    };
+    }
+  }
+
+
+
+  handleFormSubmit = (e) => {
+    e.preventDefault()
+
+    if (false) {
+      this.setState({
+        password: '',
+        passwordConfirm: '',
+      })
+
+      return
+    }
+    this.props.firebase
+      .login(this.state.email, this.state.password)
+      .then(({user, _tokenResponse: token}) => {
+        return this.loginCallback(user, token)
+      })
+      .catch((err) => console.err(err))
+  }
+
+  loginCallback = (user, token) => {
+    console.log(user)
+    console.log(token)
   }
 
   render() {
@@ -38,7 +65,12 @@ export default class LoginApp extends Component {
                 <img src={logo} className="App-logo" alt="logo" />
                 <h1> Let's get started now! </h1>
                 <p>
-                  Login or  <Link to={{ pathname: "/register"}}> create an account </Link> and start chatting
+                  Login or{' '}
+                  <Link to={{ pathname: '/register' }}>
+                    {' '}
+                    create an account{' '}
+                  </Link>{' '}
+                  and start chatting
                 </p>
               </div>
             </div>
@@ -91,7 +123,7 @@ export default class LoginApp extends Component {
                     type="submit"
                     disabled={invalidInput}
                   >
-                    Register
+                    Login
                   </Button>
                 </div>
               </form>
@@ -104,3 +136,7 @@ export default class LoginApp extends Component {
     )
   }
 }
+
+const LoginApp = withFirebase(Login)
+
+export default LoginApp
