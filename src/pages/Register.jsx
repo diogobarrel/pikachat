@@ -40,7 +40,7 @@ class Register extends Component {
     }
     debugger
     this.props.firebase
-      .signup(this.state.email, this.state.password)
+      .register(this.state.email, this.state.password)
       .then((response) => {
         debugger
         console.log(response)
@@ -52,9 +52,7 @@ class Register extends Component {
     const { email, password, passwordConfirm } = this.state
 
     const invalidInput =
-      password !== passwordConfirm ||
-      password === '' ||
-      email === ''
+      password !== passwordConfirm || password === '' || email === ''
 
     return (
       <div className="app">
@@ -65,10 +63,8 @@ class Register extends Component {
             <div className="app-login__banner">
               <div>
                 <img src={logo} className="App-logo" alt="logo" />
-                <h1> Let's get started now! </h1>
-                <p>
-                  Or <b>create an account</b> and start chatting
-                </p>
+                <h1> Register! </h1>
+                <p>Create an account using your email and let's chat</p>
               </div>
             </div>
 
