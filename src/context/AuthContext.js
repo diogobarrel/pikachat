@@ -9,31 +9,37 @@ export function useAuth() {
 
 export function AuthProveder({ children }) {
   const [user, setUser] = React.useState();
+  const [loading, setLoading] = React.useState();
 
   function signup(email, passowrd) {
-    const AuthSession = auth.getAuth()
+    const AuthSession = auth.getAuth();
     AuthSession.createUserWithEmailAndPassword(email, passowrd)
-      .then( (userCredentials) => {
+      .then((userCredentials) => {
         console.table(userCredentials);
-        debugger
       })
-      .catch(err => console.error(err))
+      .catch((err) => console.error(err));
   }
 
   useEffect(() => {
     const AuthSession = auth.getAuth();
+    console.log(AuthSession);
     const unsubscribe = AuthSession.onAuthStateChanged((user) => {
-      console.table(user)
-      debugger
-      setUser(user);
+      setLoading(false);
+      if (user) {
+        setUser(user);
+      }
     });
     return unsubscribe;
   }, []);
 
   const value = {
     user,
-    signup
+    signup,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }

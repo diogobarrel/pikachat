@@ -9,29 +9,38 @@ import { AccountCircle, Lock } from "@mui/icons-material";
 
 import { TextField } from "@mui/material";
 
-import { useAuth} from '../context/AuthContext'
+import { useAuth } from "../context/AuthContext";
 
 export default class RegisterApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {
-        email: "",
-        profilePic: "",
-      },
+      email: "",
+      password: "",
+      passwordConfirm: "",
+      loading: false,
+      success: false,
+      error: {},
     };
   }
+
   validateForm() {
-    return true;
+    return false;
   }
-  
+
   handleFormSubmit = () => {
+
     if (!this.validateForm()) {
-      return
+      this.setState({
+        password: '',
+        passwordConfirm: ''
+      })
+
+      return;
     }
 
     const { signup } = useAuth();
-    signup(this.state.email, this.state.password)
+    signup(this.state.email, this.state.password);
   };
 
   render() {
@@ -55,6 +64,8 @@ export default class RegisterApp extends Component {
               <form onSubmit={this.handleFormSubmit}>
                 <TextField
                   id="login-textfield"
+                  onChange={(event) => this.setState({ email: event.target.value }) }
+                  value={this.state.email}
                   label="Login"
                   InputProps={{
                     startAdornment: (
@@ -68,6 +79,8 @@ export default class RegisterApp extends Component {
 
                 <TextField
                   id="password-textfield"
+                  onChange={(event) => this.setState({ password: event.target.value})}
+                  value={this.state.password}
                   type="password"
                   label="Password"
                   InputProps={{
@@ -81,7 +94,9 @@ export default class RegisterApp extends Component {
                 />
 
                 <TextField
-                  id="password-textfield"
+                  id="password-confirm-textfield"
+                  onChange={(event) => this.setState({ passwordConfirm: event.target.value } )}
+                  value={this.state.passwordConfirm}
                   type="password"
                   label="Password"
                   InputProps={{
@@ -93,13 +108,12 @@ export default class RegisterApp extends Component {
                   }}
                   variant="standard"
                 />
+                <div className="app-login__button">
+                  <Button variant="contained" color="secondary" type="submit">
+                    Register
+                  </Button>
+                </div>
               </form>
-            </div>
-
-            <div className="app-login__button">
-              <Button variant="contained" color="secondary">
-                Register
-              </Button>
             </div>
           </div>
 
