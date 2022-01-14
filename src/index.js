@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import LoginApp from  './pages/Login';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material'
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline></CssBaseline>
-    <App />
+    <LoginApp />
   </React.StrictMode>,
   document.getElementById('root')
 );

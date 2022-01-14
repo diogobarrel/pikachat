@@ -1,0 +1,99 @@
+body > #root > div {
+  height: 100vh;
+}
+
+.App {
+  background: #333738;
+  display: block;
+  height: 100vh;
+}
+
+.App-login-page {
+  text-align: center;
+  display: grid;
+  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: 5rem auto 3rem;
+  height: 100vh;
+
+  p {
+  }
+}
+
+.App-logo {
+  height: 8rem;
+  margin: 1rem;
+  pointer-events: none;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.navbar-react {
+  grid-area: header;
+  display: flex;
+  flex-direction: row;
+  background: #333738;
+  position: absolute;
+  color: #B18742;
+  z-index: 1000;
+  width: 100%;
+  max-width: -webkit-fill-available;
+  justify-content: center;
+  font-family: monospace;
+}
+
+.app__login {
+  grid-area: main;
+  background-color: #B18742;
+  height: 40rem;
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 40rem;
+  justify-self: center;
+  border-radius: 0.5rem;
+}
+
+.app__login--select {
+  align-self: center;
+  width: 200px;
+  display: flex;
+  height: 30rem;
+  align-content: space-evenly;
+  flex-flow: wrap;
+  & .Mui-focused {
+    color: white !important;
+    &:not(label) {
+      border-bottom: 2px solid white !important;
+    }
+  }
+}
+
+.app__login--button {
+  margin: 3rem;
+  height: 100%;
+
+  button {
+    background: #333738;
+    width: 200px;
+  }
+}
+
+.app__footer {
+  grid-area: footer;
+  width: 100%;
+  background: #333738;
+}
