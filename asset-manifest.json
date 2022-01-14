@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pikachat/static/css/main.0f428069.css",
-    "main.js": "/pikachat/static/js/main.b1711166.js",
+    "main.css": "/pikachat/static/css/main.a47eac9e.css",
+    "main.js": "/pikachat/static/js/main.1e7590e6.js",
     "static/js/787.68b06b76.chunk.js": "/pikachat/static/js/787.68b06b76.chunk.js",
-    "static/media/logo.svg": "/pikachat/static/media/logo.7708877c4a26acc9b4fa1314ba4a4802.svg",
+    "static/media/logo.svg": "/pikachat/static/media/logo.8d72a636b107a45b650f2e772bfbbbe3.svg",
     "index.html": "/pikachat/index.html",
-    "main.0f428069.css.map": "/pikachat/static/css/main.0f428069.css.map",
-    "main.b1711166.js.map": "/pikachat/static/js/main.b1711166.js.map",
+    "main.a47eac9e.css.map": "/pikachat/static/css/main.a47eac9e.css.map",
+    "main.1e7590e6.js.map": "/pikachat/static/js/main.1e7590e6.js.map",
     "787.68b06b76.chunk.js.map": "/pikachat/static/js/787.68b06b76.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f428069.css",
-    "static/js/main.b1711166.js"
+    "static/css/main.a47eac9e.css",
+    "static/js/main.1e7590e6.js"
   ]
 }
