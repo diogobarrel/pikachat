@@ -43,7 +43,7 @@ code {
 
 .app__main {
   grid-area: main;
-  background-color: #ffff;
+  background-color: #DADADA;
   height: 100%;
   margin: 0.2rem;
   flex-direction: column;

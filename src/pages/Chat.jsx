@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 
 import React, { Component } from "react";
+import ChatMenu from "../components/chat/navigation/ChatMenu";
 import '../styles/Chat.scss'
 
 export default class ChatApp extends Component {
@@ -21,7 +22,7 @@ export default class ChatApp extends Component {
                 <div className="app__header">  HEAD </div>
                 <div className="app__main">
                     <div className="chat-nav">
-                        MAIN NAV
+                        <ChatMenu></ChatMenu>
                     </div>
                     <div className="chat-main">
                         <div className="chat-container">

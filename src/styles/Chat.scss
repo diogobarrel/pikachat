@@ -1,29 +1,36 @@
 .app__main {
   display: flex;
   flex-direction: row;
-  margin: 0.5px;
 }
 
 .chat-nav {
   width: 40%;
-  border-right: 4px blue solid;
+  border-right: 1px black solid;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-main {
+  margin: 10px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0.5px;
+  margin: 7.5px;
+  background-color: #DADADA;
 }
 
 .chat-container {
   height: 100%;
+  border: 1px black solid;
+  border-radius: 6px;
   background: white;
-
+  margin: 5px;
 }
 
 .chat-replybox-container {
   height: 300px;
   background: white;
-  border: 3px black solid;
+  margin: 5px;
+  border: 1px black solid;
+  border-radius: 6px;
 }
