@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-import LoginApp from  './pages/Login';
-import ChatApp from  './pages/Chat';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
+
+import RegisterApp from './pages/Register';
 
 const pikaTheme = createTheme({
   palette: {
@@ -31,7 +31,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={pikaTheme}>
       <CssBaseline></CssBaseline>
-      <ChatApp />
+      <RegisterApp />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
