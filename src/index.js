@@ -5,7 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import { AuthProveder } from './context/AuthContext';
+import Firebase, { FirebaseContext } from './components/Firebase';
 
 import RegisterApp from './pages/Register';
 
@@ -30,12 +30,12 @@ const pikaTheme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProveder>
+    <FirebaseContext.Provider value={new Firebase()}>
       <ThemeProvider theme={pikaTheme}>
         <CssBaseline></CssBaseline>
         <RegisterApp />
       </ThemeProvider>
-    </AuthProveder>
+    </FirebaseContext.Provider>,
   </React.StrictMode>,
   document.getElementById('root')
 );
