@@ -4,11 +4,12 @@ import "../styles/Login.scss";
 
 import logo from "../assets/logo.svg";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box"
 import InputAdornment from "@mui/material/InputAdornment";
 import { AccountCircle, Lock } from "@mui/icons-material";
 
 import { TextField } from "@mui/material";
+
+import { useAuth} from '../context/AuthContext'
 
 export default class RegisterApp extends Component {
   constructor(props) {
@@ -20,6 +21,18 @@ export default class RegisterApp extends Component {
       },
     };
   }
+  validateForm() {
+    return true;
+  }
+  
+  handleFormSubmit = () => {
+    if (!this.validateForm()) {
+      return
+    }
+
+    const { signup } = useAuth();
+    signup(this.state.email, this.state.password)
+  };
 
   render() {
     return (
@@ -36,10 +49,10 @@ export default class RegisterApp extends Component {
                   Or <b>create an account</b> and start chatting
                 </p>
               </div>
-          </div>
-              
+            </div>
+
             <div className="app-login__select">
-              <form>
+              <form onSubmit={this.handleFormSubmit}>
                 <TextField
                   id="login-textfield"
                   label="Login"
@@ -66,9 +79,23 @@ export default class RegisterApp extends Component {
                   }}
                   variant="standard"
                 />
+
+                <TextField
+                  id="password-textfield"
+                  type="password"
+                  label="Password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Lock />
+                      </InputAdornment>
+                    ),
+                  }}
+                  variant="standard"
+                />
               </form>
             </div>
-              
+
             <div className="app-login__button">
               <Button variant="contained" color="secondary">
                 Register

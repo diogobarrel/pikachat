@@ -45,8 +45,8 @@
   & > form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 150px;
+    justify-content: space-evenly;
+    height: 100%;
   }
 }
 

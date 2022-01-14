@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline } from '@mui/material'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
+import { AuthProveder } from './context/AuthContext';
 
 import RegisterApp from './pages/Register';
 
@@ -29,10 +30,12 @@ const pikaTheme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={pikaTheme}>
-      <CssBaseline></CssBaseline>
-      <RegisterApp />
-    </ThemeProvider>
+    <AuthProveder>
+      <ThemeProvider theme={pikaTheme}>
+        <CssBaseline></CssBaseline>
+        <RegisterApp />
+      </ThemeProvider>
+    </AuthProveder>
   </React.StrictMode>,
   document.getElementById('root')
 );

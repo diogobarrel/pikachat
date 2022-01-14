@@ -17,7 +17,9 @@ export default class LoginApp extends Component {
     this.state = {
       user: {
         email: "",
-        profilePic: "",
+        password: "",
+        passwordConfirm: "",
+        loading: false,
       },
     };
   }
@@ -32,7 +34,8 @@ export default class LoginApp extends Component {
           <div className="app-login--select">
               <TextField
                 id="login-textfield"
-                label="Login"
+                label="Email"
+                value={this.state.email}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -47,6 +50,7 @@ export default class LoginApp extends Component {
                 id="password-textfield"
                 type="password"
                 label="Password"
+                value={this.state.password}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
