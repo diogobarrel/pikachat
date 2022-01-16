@@ -37,6 +37,7 @@ ReactDOM.render(
         <Router>
           <Routes>
             <Route exact path={'/'} element={<LoginApp></LoginApp>}></Route>
+            <Route path={'/pikachat'} element={<LoginApp></LoginApp>}></Route>
             <Route path="/login" element={<LoginApp></LoginApp>}></Route>
             <Route path="/register" element={<RegisterApp></RegisterApp>}></Route>
           </Routes>

@@ -24,8 +24,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 3rem;
-  height: 700px;
+  height: 600px;
   width: 500px;
   align-self: center;
 }
@@ -55,8 +54,8 @@
   place-self: flex-end;
   align-self: center;
 }
+
 .app-login {
-  margin: 3rem;
 
   button {
     width: 200px;

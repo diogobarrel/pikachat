@@ -1,3 +1,7 @@
+/* 
+thanks to  https://github.com/the-road-to-react-with-firebase/react-firebase-authentication/blob/master/src/components/Firebase/firebase.js
+*/
+
 import { initializeApp } from 'firebase/app'
 import * as auth from 'firebase/auth'
 

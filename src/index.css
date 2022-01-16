@@ -4,8 +4,8 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
+   -moz-osx-font-smoothing: grayscale;
+  background-color: '#333738' !important;
 }
 
 code {
@@ -13,19 +13,17 @@ code {
     monospace;
 }
 
-
 .app {
   background: #333738;
-  display: block;
   height: 100vh;
 }
 
 .app__base {
   text-align: center;
   display: grid;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-areas: 'header' 'main' 'footer';
   grid-template-rows: 3rem auto 1.5rem;
-  height: 100vh;
+  height: 100%;
 }
 
 .app__header {
@@ -33,7 +31,7 @@ code {
   display: flex;
   flex-direction: row;
   background: #333738;
-  color: #B18742;
+  color: #b18742;
   z-index: 1000;
   width: 100%;
   max-height: 30px;
@@ -43,14 +41,14 @@ code {
 
 .app__main {
   grid-area: main;
-  background-color: #DADADA;
+  background-color: #dadada;
   height: 100%;
   margin: 0.2rem;
   flex-direction: column;
   border-radius: 0.5rem;
   width: 80%;
   max-width: 1600px;
-  
+
   justify-self: center;
 }
 
