@@ -1,8 +1,8 @@
-import { Message, Send } from '@mui/icons-material'
 import React, { Component } from 'react'
 import TextArea from './TextArea'
 
 import './Replybox.scss'
+import ReplyboxFooter from './ReplyboxFooter'
 
 export default class Replybox extends Component {
   constructor(params) {
@@ -22,9 +22,7 @@ export default class Replybox extends Component {
         <div className="replybox__text-area">
           <TextArea eventbus={this.props.eventbus}></TextArea>
         </div>
-        <div className="replybox__footer">
-          <Send></Send>
-        </div>
+          <ReplyboxFooter></ReplyboxFooter>
       </div>
     )
   }

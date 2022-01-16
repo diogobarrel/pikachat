@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Message, Send } from '@mui/icons-material'
 
 export default class ReplyboxFooter extends Component {
   constructor(params) {
@@ -14,12 +15,11 @@ export default class ReplyboxFooter extends Component {
   }
 
   render() {
-    return <div>
-        <div>
-            <div contentEditable className='text-area'>
-                { this.props.message.text }
-            </div>
-        </div>
+    return <div className='replybox__footer'>
+          <Send></Send>
+          <Send></Send>
+          <Send></Send>
+          <Message></Message>
     </div>
   }
 }

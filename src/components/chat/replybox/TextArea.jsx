@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import ContentEditable from 'react-contenteditable'
+import sanitizeHtml from 'sanitize-html'
 
 export default class textArea extends Component {
   constructor(params) {
     super(params)
     this.state = {
       html: '',
+      editable: true,
       attachments: [],
     }
 
@@ -13,63 +16,51 @@ export default class textArea extends Component {
     this.domElm = null
   }
 
-  save() {
-    // this.setState({ html: this.props.html })
-  }
-
-  toggleEdit() {
-    this.editing = !this.editing
-  }
-
-  addText(text) {
-    this.domElm.innerHTML = this.domElm.innerHTML + text
-  }
-
-  addLineBreak() {
-    this.setState({ html: this.domElm.innerHTML + '\n' })
-    const isEmpty = this.domElm.innerHTML === ''
-    const firstCharacterIsLinebreak =
-      this.domElm.innerHTML[this.domElm.innerHTML.length - 1] === '\n'
-    this.addText('\n')
-    if (isEmpty || !firstCharacterIsLinebreak) {
-      this.addText('\n')
-    }
-    this.domElm.scrollTop = this.domElm.scrollHeight
-  }
-
   handleKeyDown = (input) => {
     const { key, code, charCode, ctrlKey, altKey } = input
+    switch(key) {
+        default:
+            console.log(key, code, charCode, ctrlKey, altKey)
+            break;
 
-    switch (key) {
-      case 'Enter': {
-        input.stopPropagation()
-        input.preventDefault()
-        this.addLineBreak()
-        break
-      }
-      default: {
-        console.log(key)
-        console.log(this.state.html)
-        this.setState({ html: this.domElm.innerHTML + key })
-        this.props.eventbus.emit('text-area-input', this.state.html)
-      }
+        case 'Enter':
+            ctrlKey && console.log('Control Enter')
+            break;
     }
   }
+
+  handleChange = evt => {
+    this.setState({ html: evt.target.value });
+  };
+
+  sanitizeConf = {
+    allowedTags: ["b", "i", "em", "strong", "a", "p", "h1"],
+    allowedAttributes: { a: ["href"] }
+  };
+
+  sanitize = () => {
+    this.setState({ html: sanitizeHtml(this.state.html, this.sanitizeConf) });
+  };
+
+  toggleEditable = () => {
+    this.setState({ editable: !this.state.editable });
+  };
+
 
   render() {
     return (
-      <div
-        className={this.editing ? 'editing' : ''}
-        onClick={this.editOnClick ? this.toggleEdit() : undefined}
-        contentEditable
-        suppressContentEditableWarning
-        ref={(domNode) => {
+      <ContentEditable
+        onFocus={() => (this.editing = true)}
+        /* onFocus={this.restoreSelection()} */
+        onBlur={() => (this.editing = false)}
+        innerRef={(domNode) => {
           this.domElm = domNode
         }}
-        onBlur={this.save()}
         onKeyDown={this.handleKeyDown}
+        onChange={this.handleChange}
+        html={this.state.html}
         {...this.props}
-      ></div>
+      ></ContentEditable>
     )
   }
 }

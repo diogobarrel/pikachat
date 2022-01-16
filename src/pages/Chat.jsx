@@ -1,4 +1,3 @@
-import { Button } from '@mui/material'
 
 import React, { Component } from 'react'
 import ChatMenu from '../components/chat/navigation/ChatMenu'

@@ -5,21 +5,30 @@
 .replybox {
   display: flex;
   flex-direction: column;
-  background-color: orange;
+  background-color: lightgray;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  height: 100%;
 }
+
 .replybox__text-area {
+  display: block;
   font-size: 14px;
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
   max-height: 150px;
-  min-height: 100px;
   white-space: pre-wrap;
   text-align: left;
   cursor: text;
   margin: 10px;
-  margin-bottom: 0;
-  padding: 10px;
+  > div {
+    background: white;
+    height: 100%;
+    overflow: auto;
+  }
 
   &[data-placeholder]:empty:before {
     content: attr(data-placeholder);
@@ -38,6 +47,10 @@
 }
 
 .replybox__footer {
-  height: 50px;
-  background-color: yellow;
+  height: 40px;
+  display: flex;
+  background-color: grey;
+  flex-direction: row;
+  justify-content: center;
+  place-items: center;
 }
