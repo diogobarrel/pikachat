@@ -24,18 +24,20 @@
   text-align: left;
   cursor: text;
   margin: 10px;
+  text-indent: 5px;
   > div {
     background: white;
     height: 100%;
     overflow: auto;
+    padding-top: 5px;
+
+    &[data-placeholder]:empty:before {
+      content: attr(data-placeholder);
+      color: gray;
+      background-color: transparent;
+    }
   }
 
-  &[data-placeholder]:empty:before {
-    content: attr(data-placeholder);
-    position: absolute;
-    color: gray;
-    background-color: transparent;
-  }
 
   img.emoji {
     height: 1rem;

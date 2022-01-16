@@ -32,19 +32,19 @@ class Chat extends Component {
     return (
       <div className="app chat-app">
         <div className="app__base">
-          <div className="app__header"> HEAD </div>
+          <div className="app__header"></div>
           <div className="chat__main">
             <div className="chat__menu">
               <ChatMenu></ChatMenu>
             </div>
             <div className="chat__main--conversation">
-              <div className="chat-container">INFORMAÇÃO DA CONVERSA</div>
+              <div className="chat-container"></div>
               <div className="chat-replybox-container">
                 <Replybox eventbus={this.chatEventBus}></Replybox>
               </div>
             </div>
           </div>
-          <div className="app__footer">MAIN FOOTER</div>
+          <div className="app__footer"></div>
         </div>
       </div>
     )

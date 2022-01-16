@@ -59,6 +59,7 @@ export default class textArea extends Component {
         onKeyDown={this.handleKeyDown}
         onChange={this.handleChange}
         html={this.state.html}
+        data-placeholder="Escreva sua mensagem"
         {...this.props}
       ></ContentEditable>
     )

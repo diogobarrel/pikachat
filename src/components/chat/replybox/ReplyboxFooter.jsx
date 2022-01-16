@@ -16,10 +16,8 @@ export default class ReplyboxFooter extends Component {
 
   render() {
     return <div className='replybox__footer'>
+          Enviar
           <Send></Send>
-          <Send></Send>
-          <Send></Send>
-          <Message></Message>
     </div>
   }
 }
