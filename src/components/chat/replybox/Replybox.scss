@@ -1,0 +1,43 @@
+.text-area {
+  white-space: pre-wrap;
+}
+
+.replybox {
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+}
+.replybox__text-area {
+  font-size: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  max-height: 150px;
+  min-height: 100px;
+  white-space: pre-wrap;
+  text-align: left;
+  cursor: text;
+  margin: 10px;
+  margin-bottom: 0;
+  padding: 10px;
+
+  &[data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    position: absolute;
+    color: gray;
+    background-color: transparent;
+  }
+
+  img.emoji {
+    height: 1rem;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    border: 0;
+    zoom: 1;
+  }
+}
+
+.replybox__footer {
+  height: 50px;
+  background-color: yellow;
+}

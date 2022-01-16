@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import RegisterApp from './pages/Register'
 import LoginApp from './pages/Login'
+import ChatApp from './pages/Chat'
 
 const pikaTheme = createTheme({
   palette: {
@@ -37,7 +38,7 @@ ReactDOM.render(
         <Router>
           <Routes>
             <Route exact path={'/'} element={<LoginApp></LoginApp>}></Route>
-            <Route path={'/pikachat'} element={<LoginApp></LoginApp>}></Route>
+            <Route path={'/pikachat'} element={<ChatApp></ChatApp>}></Route>
             <Route path="/login" element={<LoginApp></LoginApp>}></Route>
             <Route path="/register" element={<RegisterApp></RegisterApp>}></Route>
           </Routes>
