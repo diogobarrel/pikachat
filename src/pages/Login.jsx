@@ -21,7 +21,8 @@ class Login extends Component {
       email: '',
       password: '',
       loading: false,
-      error: '',
+      loggedIn: false,
+      loginError: '',
     }
   }
 
@@ -32,13 +33,19 @@ class Login extends Component {
       .then(({ user, _tokenResponse: token }) => {
         return this.loginCallback(user, token)
       })
-      .catch((err) => this.setState({ error: 'Usuário ou senha invalidos.' }))
+      .catch((err) => {
+        debugger
+        if (err.message.includes('auth/too-many-requests'))
+          return this.setState({ loginError: 'Login bloqueado por muitas tentativas invalidas. Você pode habilita-lo novamente resetando sua senha.' })
+
+        this.setState({ loginError: 'Errou!' })
+      })
   }
 
   loginCallback = (user, token) => {
     console.log(user)
     console.log(token)
-    this.setState({ loggedIn: true})
+    this.setState({ loggedIn: true })
   }
 
   render() {
@@ -53,6 +60,7 @@ class Login extends Component {
 
           <div className="app__main app-login">
             <div className="app-login__banner">
+              {this.state.loggedIn && <Navigate to="/pikachat"></Navigate>}
               <div>
                 <img src={logo} className="App-logo" alt="logo" />
                 <h1> Let's get started now! </h1>
@@ -68,8 +76,6 @@ class Login extends Component {
             </div>
 
             <div className="app-login__select">
-              {this.state.loginError && <Alert> this.state.loginError</Alert>}
-              {this.state.loggedIn && <Navigate to="/pikachat"></Navigate>}
               <form onSubmit={this.handleFormSubmit}>
                 <TextField
                   id="login-textfield"
@@ -109,6 +115,10 @@ class Login extends Component {
                   }}
                   variant="standard"
                 />
+
+                {this.state.loginError && (
+                  <Alert severity="error"> {this.state.loginError}</Alert>
+                )}
 
                 <div className="app-login__button">
                   <Button
