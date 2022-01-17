@@ -2,11 +2,10 @@
 import React, { Component } from 'react'
 import ChatMenu from '../components/chat/navigation/ChatMenu'
 import '../styles/Chat.scss'
-import { withFirebase } from '../components/Firebase/context'
 import Replybox from '../components/chat/replybox/Replybox'
 import EventEmitter from 'events'
 
-class Chat extends Component {
+export default class Chat extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -33,7 +32,7 @@ class Chat extends Component {
       <div className="app chat-app">
         <div className="app__base">
           <div className="app__header"></div>
-          <div className="chat__main">
+          <div className="app__main chat__main">
             <div className="chat__menu">
               <ChatMenu></ChatMenu>
             </div>
@@ -50,6 +49,3 @@ class Chat extends Component {
     )
   }
 }
-
-const ChatApp = withFirebase(Chat)
-export default ChatApp

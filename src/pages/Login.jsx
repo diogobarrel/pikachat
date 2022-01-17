@@ -11,10 +11,9 @@ import InputAdornment from '@mui/material/InputAdornment'
 
 import { AccountCircle, Lock } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
-import { withFirebase } from '../components/Firebase/context'
 import { Navigate } from 'react-router-dom'
 
-class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -140,7 +139,3 @@ class Login extends Component {
     )
   }
 }
-
-const LoginApp = withFirebase(Login)
-
-export default LoginApp

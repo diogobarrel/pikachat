@@ -8,9 +8,8 @@ import InputAdornment from '@mui/material/InputAdornment'
 import { AccountCircle, Lock } from '@mui/icons-material'
 
 import { TextField } from '@mui/material'
-import { withFirebase } from '../components/Firebase/context'
 
-class Register extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -146,7 +145,3 @@ class Register extends Component {
     )
   }
 }
-
-const RegisterApp = withFirebase(Register)
-
-export default RegisterApp
