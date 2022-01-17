@@ -5,13 +5,14 @@ import Button from '@mui/material/Button'
 
 import '../styles/Login.scss'
 
-import { TextField } from '@mui/material'
+import { Alert, TextField } from '@mui/material'
 
 import InputAdornment from '@mui/material/InputAdornment'
 
 import { AccountCircle, Lock } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { withFirebase } from '../components/Firebase/context'
+import { Navigate } from 'react-router-dom'
 
 class Login extends Component {
   constructor(props) {
@@ -20,33 +21,24 @@ class Login extends Component {
       email: '',
       password: '',
       loading: false,
+      error: '',
     }
   }
 
-
-
   handleFormSubmit = (e) => {
     e.preventDefault()
-
-    if (false) {
-      this.setState({
-        password: '',
-        passwordConfirm: '',
-      })
-
-      return
-    }
     this.props.firebase
       .login(this.state.email, this.state.password)
-      .then(({user, _tokenResponse: token}) => {
+      .then(({ user, _tokenResponse: token }) => {
         return this.loginCallback(user, token)
       })
-      .catch((err) => console.err(err))
+      .catch((err) => this.setState({ error: 'Usuário ou senha invalidos.' }))
   }
 
   loginCallback = (user, token) => {
     console.log(user)
     console.log(token)
+    this.setState({ loggedIn: true})
   }
 
   render() {
@@ -76,6 +68,8 @@ class Login extends Component {
             </div>
 
             <div className="app-login__select">
+              {this.state.loginError && <Alert> this.state.loginError</Alert>}
+              {this.state.loggedIn && <Navigate to="/pikachat"></Navigate>}
               <form onSubmit={this.handleFormSubmit}>
                 <TextField
                   id="login-textfield"

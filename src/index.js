@@ -37,10 +37,13 @@ ReactDOM.render(
         <CssBaseline />
         <Router>
           <Routes>
-            <Route exact path={'/'} element={<LoginApp></LoginApp>}></Route>
-            <Route path={'/pikachat'} element={<ChatApp></ChatApp>}></Route>
+            <Route path={'*'} element={<LoginApp></LoginApp>}></Route>
             <Route path="/login" element={<LoginApp></LoginApp>}></Route>
-            <Route path="/register" element={<RegisterApp></RegisterApp>}></Route>
+            <Route
+              path="/register"
+              element={<RegisterApp></RegisterApp>}
+            ></Route>
+            <Route path={'/pikachat'} element={<ChatApp></ChatApp>}></Route>
           </Routes>
         </Router>
       </ThemeProvider>
