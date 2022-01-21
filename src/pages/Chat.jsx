@@ -5,26 +5,30 @@ import '../styles/Chat.scss'
 import Replybox from '../components/chat/replybox/Replybox'
 import EventEmitter from 'events'
 
+import store from '../store'
+import ChatService from '../services/chat-service'
+
 export default class Chat extends Component {
   constructor(props) {
     super(props)
+    debugger
     this.state = {
-      user: {
-        email: '',
-        profilePic: '',
-      },
       message: {
         text: '',
       },
     }
-
+    
+    this.service = new ChatService()
     this.chatEventBus = new EventEmitter()
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.chatEventBus.addListener('text-area-input', (value) => {
         this.setState({ message: { text: value } })
     })
+    const chats = await this.service.getUserChats(this.props.user.uid)
+    const messages = this.service.getMesages(chats[0].id)
+    store.dispatch({type: 'chats/setChats', payload: messages})
   }
 
   render() {
