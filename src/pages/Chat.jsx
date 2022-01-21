@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import ChatMenu from '../components/chat/navigation/ChatMenu'
 import '../styles/Chat.scss'
@@ -17,18 +16,20 @@ export default class Chat extends Component {
         text: '',
       },
     }
-    
+
     this.service = new ChatService()
     this.chatEventBus = new EventEmitter()
   }
 
   async componentDidMount() {
     this.chatEventBus.addListener('text-area-input', (value) => {
-        this.setState({ message: { text: value } })
+      this.setState({ message: { text: value } })
     })
     const chats = await this.service.getUserChats(this.props.user.uid)
     const messages = this.service.getMesages(chats[0].id)
-    store.dispatch({type: 'chats/setChats', payload: messages})
+
+    store.dispatch({ type: 'chats/setChats', payload: chats })
+    store.dispatch({ type: 'messages/setMessages', payload: messages })
   }
 
   render() {

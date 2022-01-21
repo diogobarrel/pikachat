@@ -2,12 +2,11 @@ import {
   getFirestore,
   serverTimestamp,
   getDocs,
-  doc,
   collection,
-  collectionGroup,
   query,
   where,
   limit,
+  orderBy,
 } from 'firebase/firestore'
 
 export default class ChatService {
@@ -37,18 +36,15 @@ export default class ChatService {
   }
 
   async getMesages(chatId) {
-    debugger
-    const chatMessagesRef = collection(this.firestoreInstance, 'chatMessages')
-    const chatRef = chatMessagesRef.doc(chatId)
-    const messagesRef = chatRef.doc('messages')
-    const q = query(messagesRef, limit(20))
-    const chatsQuery = await getDocs(q)
-    if (chatsQuery.empty) {
+    const messagesRef = collection(this.firestoreInstance, 'chatMessages', chatId, 'messages')
+    const q = query(messagesRef, limit(20), orderBy('sentAt'))
+    const messagesQuery = await getDocs(q)
+    if (messagesQuery.empty) {
       return []
     }
 
-    const [chatsData] = chatsQuery.docs.map((doc) => doc.data())
-    console.log(chatsData)
-    return chatsData
+    const [messagesData] = messagesQuery.docs.map((doc) => doc.data())
+    console.log(messagesData)
+    return messagesData
   }
 }
