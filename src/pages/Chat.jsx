@@ -26,9 +26,16 @@ export default class Chat extends Component {
       this.setState({ message: { text: value } })
     })
     const chats = await this.service.getUserChats(this.props.user.uid)
-    const messages = this.service.getMesages(chats[0].id)
+    this.service.watchChats(this.props.user.uid, this.setChats)
+    this.service.watchMessages(chats[0].id, this.setMessages)
 
+  }
+  
+  setChats(chats) {
     store.dispatch({ type: 'chats/setChats', payload: chats })
+  }
+  
+  setMessages(messages) {
     store.dispatch({ type: 'messages/setMessages', payload: messages })
   }
 

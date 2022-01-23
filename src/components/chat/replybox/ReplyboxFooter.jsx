@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Message, Send } from '@mui/icons-material'
+import { Send } from '@mui/icons-material'
 
 export default class ReplyboxFooter extends Component {
   constructor(params) {
