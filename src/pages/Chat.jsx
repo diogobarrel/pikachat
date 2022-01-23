@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ChatMenu from '../components/chat/navigation/ChatMenu'
+import Feed from '../components/chat/feed/Feed'
 import '../styles/Chat.scss'
 import Replybox from '../components/chat/replybox/Replybox'
 import EventEmitter from 'events'
@@ -10,7 +11,6 @@ import ChatService from '../services/chat-service'
 export default class Chat extends Component {
   constructor(props) {
     super(props)
-    debugger
     this.state = {
       message: {
         text: '',
@@ -49,7 +49,9 @@ export default class Chat extends Component {
               <ChatMenu></ChatMenu>
             </div>
             <div className="chat__main--conversation">
-              <div className="chat-container"></div>
+              <div className="chat-container">
+                <Feed></Feed>
+              </div>
               <div className="chat-replybox-container">
                 <Replybox eventbus={this.chatEventBus}></Replybox>
               </div>

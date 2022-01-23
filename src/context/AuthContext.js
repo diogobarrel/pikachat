@@ -13,11 +13,9 @@ export function AuthProvider({ children }) {
 
   function signup(email, passowrd) {
     const AuthSession = auth.getAuth()
-    debugger
 
     AuthSession.createUserWithEmailAndPassword(AuthSession, email, passowrd)
       .then((userCredentials) => {
-        debugger
         console.log(userCredentials)
       })
       .catch((err) => console.error(err))
@@ -29,7 +27,6 @@ export function AuthProvider({ children }) {
     const unsubscribe = AuthSession.onAuthStateChanged((user) => {
       setLoading(false)
       if (user) {
-        debugger
         setUser(user)
       }
     })

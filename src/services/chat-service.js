@@ -49,7 +49,9 @@ export default class ChatService {
       return []
     }
 
-    const [messagesData] = messagesQuery.docs.map((doc) => doc.data())
+    const [messagesData] = messagesQuery.docs.map((doc) => {
+      return { ...doc.data(), id: doc.id }
+    })
     console.log(messagesData)
     return messagesData
   }
@@ -57,13 +59,13 @@ export default class ChatService {
   async watchChats(userId, setter) {
     const chatsRef = collection(this.firestoreInstance, 'chats')
     const q = query(
-        chatsRef,
-        where('participants', 'array-contains', userId),
-        limit(20)
-      )
+      chatsRef,
+      where('participants', 'array-contains', userId),
+      limit(20)
+    )
     const unsub = onSnapshot(q, (qSnapshot) => {
       const chatsData = []
-      qSnapshot.forEach((doc) => chatsData.push(doc.data()))
+      qSnapshot.forEach((doc) => chatsData.push({...doc.data(), id: doc.id}))
       console.log('Updated messages', chatsData)
       setter(chatsData)
     })
@@ -80,7 +82,7 @@ export default class ChatService {
     const q = query(messagesRef, limit(20), orderBy('sentAt'))
     const unsub = onSnapshot(q, (qSnapshot) => {
       const messagesData = []
-      qSnapshot.forEach((doc) => messagesData.push(doc.data()))
+      qSnapshot.forEach((doc) => messagesData.push({...doc.data(), id: doc.id}))
       console.log('Updated messages', messagesData)
       setter(messagesData)
     })

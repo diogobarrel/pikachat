@@ -33,7 +33,6 @@ export default class Login extends Component {
         return this.loginCallback(user, token)
       })
       .catch((err) => {
-        debugger
         if (err.message.includes('auth/too-many-requests'))
           return this.setState({ loginError: 'Login bloqueado por muitas tentativas invalidas. Você pode habilita-lo novamente resetando sua senha.' })
 
