@@ -19,10 +19,10 @@ const chatReducer = (
     }
 
     case 'chats/activate': {
-        return {
-            ...state,
-            activeChat: action.payload
-        }
+      return {
+        ...state,
+        activeChat: action.payload,
+      }
     }
   }
 }

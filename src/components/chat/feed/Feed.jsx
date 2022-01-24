@@ -15,6 +15,7 @@ export default function Feed() {
             <FeedItem key={message.id} message={message}></FeedItem>
           ))}
       </Stack>
+      <div className='chat-footer'></div>
     </>
   )
 }
