@@ -13,26 +13,29 @@ export default class Replybox extends Component {
         text: '',
       },
     }
+    this.eventbus = this.props.eventbus
   }
 
-  componentWillUnmount() {
-    this.props.eventbus.addEventListener('update-text', (text) =>
+  componentDidMount() {
+    this.eventbus.addListener('update-text', (text) => {
       this.setState({ message: { text: text } })
-    )
+      console.log(this.state.message)
+    })
   }
 
   sendMessage() {
-    this.props.eventbus.emit('send-message', { ...this.state.message })
+    debugger
+    this.eventbus.emit('send-message', { ...this.state.message })
   }
 
   render() {
     return (
       <div className="replybox">
         <div className="replybox__text-area">
-          <TextArea eventbus={this.props.eventbus}></TextArea>
+          <TextArea eventbus={this.eventbus}></TextArea>
         </div>
         <ReplyboxFooter
-          eventbus={this.props.eventbus}
+          eventbus={this.eventbus}
           send={this.sendMessage}
         ></ReplyboxFooter>
       </div>

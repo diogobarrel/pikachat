@@ -14,6 +14,7 @@ export default class textArea extends Component {
     this.editing = false
     this.editOnClick = true
     this.domElm = null
+    this.eventbus = this.props.eventbus
   }
 
   handleKeyDown = (input) => {
@@ -31,7 +32,7 @@ export default class textArea extends Component {
 
   handleChange = (evt) => {
     this.setState({ html: evt.target.value })
-    this.props.eventbus.emit('update-text', this.state.html)
+    this.eventbus.emit('update-text', this.state.html)
   }
 
   sanitizeConf = {
