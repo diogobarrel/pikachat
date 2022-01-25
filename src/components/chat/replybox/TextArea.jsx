@@ -18,34 +18,34 @@ export default class textArea extends Component {
 
   handleKeyDown = (input) => {
     const { key, code, charCode, ctrlKey, altKey } = input
-    switch(key) {
-        default:
-            console.log(key, code, charCode, ctrlKey, altKey)
-            break;
+    switch (key) {
+      default:
+        console.log(key, code, charCode, ctrlKey, altKey)
+        break
 
-        case 'Enter':
-            ctrlKey && console.log('Control Enter')
-            break;
+      case 'Enter':
+        ctrlKey && console.log('Control Enter')
+        break
     }
   }
 
-  handleChange = evt => {
-    this.setState({ html: evt.target.value });
-  };
+  handleChange = (evt) => {
+    this.setState({ html: evt.target.value })
+    this.props.eventbus.emit('update-text', this.state.html)
+  }
 
   sanitizeConf = {
-    allowedTags: ["b", "i", "em", "strong", "a", "p", "h1"],
-    allowedAttributes: { a: ["href"] }
-  };
+    allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'h1'],
+    allowedAttributes: { a: ['href'] },
+  }
 
   sanitize = () => {
-    this.setState({ html: sanitizeHtml(this.state.html, this.sanitizeConf) });
-  };
+    this.setState({ html: sanitizeHtml(this.state.html, this.sanitizeConf) })
+  }
 
   toggleEditable = () => {
-    this.setState({ editable: !this.state.editable });
-  };
-
+    this.setState({ editable: !this.state.editable })
+  }
 
   render() {
     return (

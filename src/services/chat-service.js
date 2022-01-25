@@ -1,4 +1,7 @@
 import {
+  doc,
+  setDoc,
+  addDoc,
   getFirestore,
   serverTimestamp,
   getDocs,
@@ -65,11 +68,30 @@ export default class ChatService {
     )
     const unsub = onSnapshot(q, (qSnapshot) => {
       const chatsData = []
-      qSnapshot.forEach((doc) => chatsData.push({...doc.data(), id: doc.id}))
+      qSnapshot.forEach((doc) => chatsData.push({ ...doc.data(), id: doc.id }))
       console.log('Updated messages', chatsData)
       setter(chatsData)
     })
     return unsub
+  }
+
+  async sendMessage({ userId, chatId, text, attachments = [] }) {
+    const messagesRef = collection(
+      this.firestoreInstance,
+      'chatMessages',
+      chatId,
+      'messages'
+    )
+    debugger
+    const newDoc = await addDoc(messagesRef, {
+      text: text,
+      from: userId,
+      sentAt: serverTimestamp,
+    })
+    return {
+      id: newDoc.id,
+      ...newDoc.data(),
+    }
   }
 
   async watchMessages(chatId, setter) {
@@ -82,7 +104,9 @@ export default class ChatService {
     const q = query(messagesRef, limit(20), orderBy('sentAt'))
     const unsub = onSnapshot(q, (qSnapshot) => {
       const messagesData = []
-      qSnapshot.forEach((doc) => messagesData.push({...doc.data(), id: doc.id}))
+      qSnapshot.forEach((doc) =>
+        messagesData.push({ ...doc.data(), id: doc.id })
+      )
       console.log('Updated messages', messagesData)
       setter(messagesData)
     })

@@ -12,8 +12,13 @@ export default class Chat extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: {
-        text: '',
+      activeChat: {
+        id: 'z1vbrzLESLtE30B8Jyu4',
+        participants: [],
+        newMessage: {
+          text: '',
+          attachments: [],
+        }
       },
     }
 
@@ -22,19 +27,22 @@ export default class Chat extends Component {
   }
 
   async componentDidMount() {
-    this.chatEventBus.addListener('text-area-input', (value) => {
-      this.setState({ message: { text: value } })
+    this.chatEventBus.addListener('send-message', ({ text }) => {
+      this.service.sendMessage({
+        userId: this.props.user.uid,
+        chatId: this.state.activeChat.id,
+        text,
+      })
     })
     const chats = await this.service.getUserChats(this.props.user.uid)
     this.service.watchChats(this.props.user.uid, this.setChats)
     this.service.watchMessages(chats[0].id, this.setMessages)
-
   }
-  
+
   setChats(chats) {
     store.dispatch({ type: 'chats/setChats', payload: chats })
   }
-  
+
   setMessages(messages) {
     store.dispatch({ type: 'messages/setMessages', payload: messages })
   }

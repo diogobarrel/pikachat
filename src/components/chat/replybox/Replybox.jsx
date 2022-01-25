@@ -11,18 +11,30 @@ export default class Replybox extends Component {
       action: 'reading',
       message: {
         text: '',
-        attachments: [],
       },
     }
   }
 
+  componentWillUnmount() {
+    this.props.eventbus.addEventListener('update-text', (text) =>
+      this.setState({ message: { text: text } })
+    )
+  }
+
+  sendMessage() {
+    this.props.eventbus.emit('send-message', { ...this.state.message })
+  }
+
   render() {
     return (
-      <div className='replybox'>
+      <div className="replybox">
         <div className="replybox__text-area">
           <TextArea eventbus={this.props.eventbus}></TextArea>
         </div>
-          <ReplyboxFooter></ReplyboxFooter>
+        <ReplyboxFooter
+          eventbus={this.props.eventbus}
+          send={this.sendMessage}
+        ></ReplyboxFooter>
       </div>
     )
   }
