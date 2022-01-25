@@ -82,15 +82,13 @@ export default class ChatService {
       chatId,
       'messages'
     )
-    debugger
     const newDoc = await addDoc(messagesRef, {
       text: text,
       from: userId,
-      sentAt: serverTimestamp,
+      sentAt: serverTimestamp(),
     })
     return {
-      id: newDoc.id,
-      ...newDoc.data(),
+      id: newDoc.id
     }
   }
 

@@ -23,8 +23,7 @@ export default class Replybox extends Component {
     })
   }
 
-  sendMessage() {
-    debugger
+  sendMessage = () => {
     this.eventbus.emit('send-message', { ...this.state.message })
   }
 

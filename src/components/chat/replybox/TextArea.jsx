@@ -17,6 +17,10 @@ export default class textArea extends Component {
     this.eventbus = this.props.eventbus
   }
 
+  componentDidMount() {
+    this.eventbus.addListener('send-message', () => this.clear())
+  }
+  
   handleKeyDown = (input) => {
     const { key, code, charCode, ctrlKey, altKey } = input
     switch (key) {
@@ -35,6 +39,10 @@ export default class textArea extends Component {
     this.eventbus.emit('update-text', this.state.html)
   }
 
+  clear = () => {
+    this.setState({ html: '' })
+  }
+
   sanitizeConf = {
     allowedTags: ['b', 'i', 'em', 'strong', 'a', 'p', 'h1'],
     allowedAttributes: { a: ['href'] },
@@ -51,6 +59,7 @@ export default class textArea extends Component {
   render() {
     return (
       <ContentEditable
+        id="replybox-textarea"
         onFocus={() => (this.editing = true)}
         /* onFocus={this.restoreSelection()} */
         onBlur={() => (this.editing = false)}
