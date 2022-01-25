@@ -34,7 +34,10 @@ export default class Login extends Component {
       })
       .catch((err) => {
         if (err.message.includes('auth/too-many-requests'))
-          return this.setState({ loginError: 'Login bloqueado por muitas tentativas invalidas. Você pode habilita-lo novamente resetando sua senha.' })
+          return this.setState({
+            loginError:
+              'Login bloqueado por muitas tentativas invalidas. Você pode habilita-lo novamente resetando sua senha.',
+          })
 
         this.setState({ loginError: 'Errou!' })
       })
@@ -63,11 +66,8 @@ export default class Login extends Component {
                 <img src={logo} className="App-logo" alt="logo" />
                 <h1> Let's get started now! </h1>
                 <p>
-                  Login or{' '}
-                  <Link to={{ pathname: '/register' }}>
-                    {' '}
-                    create an account{' '}
-                  </Link>{' '}
+                  Login or
+                  <Link to={{ pathname: '/register' }}>create an account</Link>
                   and start chatting
                 </p>
               </div>

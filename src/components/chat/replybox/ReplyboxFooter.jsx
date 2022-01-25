@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from '@mui/material'
 import { Send } from '@mui/icons-material'
 
 export default class ReplyboxFooter extends Component {
@@ -11,13 +12,19 @@ export default class ReplyboxFooter extends Component {
         attachments: [],
       },
     }
-
   }
 
   render() {
-    return <div className='replybox__footer'>
-          Enviar
-          <Send></Send>
-    </div>
+    const sendButton = () => {}
+
+    return (
+      <div className="replybox__footer">
+        <div className="send__button">
+          <Button onClick={sendButton}>
+            <Send></Send>Enviar
+          </Button>
+        </div>
+      </div>
+    )
   }
 }
