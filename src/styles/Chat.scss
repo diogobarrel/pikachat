@@ -26,6 +26,7 @@
   margin: 5px;
   overflow-y: scroll;
   max-height: 670px;
+  contain: strict;
 }
 
 .chat__main--conversation {

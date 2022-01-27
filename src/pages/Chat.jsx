@@ -18,14 +18,14 @@ export default class Chat extends Component {
         newMessage: {
           text: '',
           attachments: [],
-        }
+        },
       },
     }
 
     this.service = new ChatService()
     this.chatEventBus = new EventEmitter()
   }
-
+  
   async componentDidMount() {
     this.chatEventBus.addListener('send-message', ({ text }) => {
       this.service.sendMessage({
@@ -57,8 +57,8 @@ export default class Chat extends Component {
               <ChatMenu></ChatMenu>
             </div>
             <div className="chat__main--conversation">
-              <div className="chat-container">
-                <Feed></Feed>
+              <div className="chat-container" id="chat-feed">
+                <Feed eventbus={this.chatEventBus}></Feed>
               </div>
               <div className="chat-replybox-container">
                 <Replybox eventbus={this.chatEventBus}></Replybox>
