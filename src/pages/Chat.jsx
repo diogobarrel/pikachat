@@ -4,7 +4,7 @@ import Feed from '../components/chat/feed/Feed'
 import '../styles/Chat.scss'
 import Replybox from '../components/chat/replybox/Replybox'
 import EventEmitter from 'events'
-
+import InviteDialog from '../components/Dialog'
 import store from '../store'
 import ChatService from '../services/chat-service'
 
@@ -25,7 +25,7 @@ export default class Chat extends Component {
     this.service = new ChatService()
     this.chatEventBus = new EventEmitter()
   }
-  
+
   async componentDidMount() {
     this.chatEventBus.addListener('send-message', ({ text }) => {
       this.service.sendMessage({
@@ -34,6 +34,7 @@ export default class Chat extends Component {
         text,
       })
     })
+
     const chats = await this.service.getUserChats(this.props.user.uid)
     this.service.watchChats(this.props.user.uid, this.setChats)
     this.service.watchMessages(chats[0].id, this.setMessages)
@@ -47,14 +48,23 @@ export default class Chat extends Component {
     store.dispatch({ type: 'messages/setMessages', payload: messages })
   }
 
+  setActiveChat(chat) {
+    store.dispatch({ type: 'chats/activate', payload: chat })
+  }
+
+  invite(email) {
+    console.log(email)
+  }
+
   render() {
     return (
       <div className="app chat-app">
         <div className="app__base">
+          <InviteDialog eventbus={this.chatEventBus} onSubmit={this.invite} />
           <div className="app__header"></div>
           <div className="app__main chat__main">
             <div className="chat__menu">
-              <ChatMenu></ChatMenu>
+              <ChatMenu eventbus={this.chatEventBus}></ChatMenu>
             </div>
             <div className="chat__main--conversation">
               <div className="chat-container" id="chat-feed">

@@ -44,8 +44,6 @@ export default class Login extends Component {
   }
 
   loginCallback = (user, token) => {
-    console.log(user)
-    console.log(token)
     this.setState({ loggedIn: true })
   }
 

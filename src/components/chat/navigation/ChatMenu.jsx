@@ -3,12 +3,22 @@ import ChatMenuItem from './ChatMenuItem'
 import './ChatMenu.scss'
 import { TextField } from '@mui/material'
 import { useSelector } from 'react-redux'
+import { Button } from '@mui/material'
 
-export default function ChatMenu() {
+export default function ChatMenu(props) {
   const [filter, setFilter] = useState('')
 
   const handleChatFilterInput = (event) => {
     setFilter(event.target.value)
+  }
+
+  const activeMessage = (id) => {
+    console.log(id)
+  }
+
+  const inviteToChatModal = () => {
+    console.log('Opening Invite Modal')
+    props.eventbus.emit('toggle-invite', true)
   }
 
   const chats = useSelector((state) => state.chatStore.chats)
@@ -30,8 +40,13 @@ export default function ChatMenu() {
         <div className="chat-menu-list__items">
           {chats &&
             chats.map((chat) => (
-              <ChatMenuItem key={chat.id} chat={chat}></ChatMenuItem>
+              <ChatMenuItem key={chat.id} chat={chat} onSelect={activeMessage}></ChatMenuItem>
             ))}
+        </div>
+        <div>
+          <div>
+            <Button onClick={inviteToChatModal}> Convidar </Button>
+          </div>
         </div>
       </div>
     </div>
