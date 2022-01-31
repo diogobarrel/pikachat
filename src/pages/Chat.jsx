@@ -6,7 +6,7 @@ import Replybox from '../components/chat/replybox/Replybox'
 import EventEmitter from 'events'
 import InviteDialog from '../components/Dialog'
 import store from '../store'
-import ChatService from '../services/chat-service'
+import { ChatService, InviteService } from '../services'
 
 export default class Chat extends Component {
   constructor(props) {
@@ -22,22 +22,23 @@ export default class Chat extends Component {
       },
     }
 
-    this.service = new ChatService()
+    this.chatAPI = new ChatService()
+    this.inviteAPI = new InviteService()
     this.chatEventBus = new EventEmitter()
   }
 
   async componentDidMount() {
     this.chatEventBus.addListener('send-message', ({ text }) => {
-      this.service.sendMessage({
+      this.chatAPI.sendMessage({
         userId: this.props.user.uid,
         chatId: this.state.activeChat.id,
         text,
       })
     })
 
-    const chats = await this.service.getUserChats(this.props.user.uid)
-    this.service.watchChats(this.props.user.uid, this.setChats)
-    this.service.watchMessages(chats[0].id, this.setMessages)
+    const chats = await this.chatAPI.getUserChats(this.props.user.uid)
+    this.chatAPI.watchChats(this.props.user.uid, this.setChats)
+    this.chatAPI.watchMessages(chats[0].id, this.setMessages)
   }
 
   setChats(chats) {
