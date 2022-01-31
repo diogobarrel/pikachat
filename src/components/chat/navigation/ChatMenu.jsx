@@ -40,7 +40,7 @@ export default function ChatMenu(props) {
         <div className="chat-menu-list__items">
           {chats &&
             chats.map((chat) => (
-              <ChatMenuItem key={chat.id} chat={chat} onSelect={activeMessage}></ChatMenuItem>
+              <ChatMenuItem key={chat.id} chat={chat} onClick={activeMessage}></ChatMenuItem>
             ))}
         </div>
         <div>

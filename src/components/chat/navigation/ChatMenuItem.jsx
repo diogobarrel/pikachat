@@ -17,7 +17,7 @@ export default class MenuItem extends Component {
   render() {
     return (
       <div className="menu-item">
-        <div className="menu-item__avatar" onClick={this.props.onSelect(this.props.chat.id)}>
+        <div className="menu-item__avatar" onClick={() => this.props.onClick(this.props.chat.id)}>
           <Avatar alt={this.props.chat.name} src={this.props.chat.url} sx={this.avatarProp()}></Avatar>
         </div>
         <div className="menu-item__preview">

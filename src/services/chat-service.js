@@ -1,6 +1,4 @@
 import {
-  doc,
-  setDoc,
   addDoc,
   getFirestore,
   serverTimestamp,
@@ -17,8 +15,6 @@ export default class ChatService {
   constructor() {
     this.firestoreInstance = getFirestore()
   }
-
-  postMessage(text, chatId) {}
 
   async getUserChats(userId) {
     const chatsRef = collection(this.firestoreInstance, 'chats')
@@ -88,7 +84,7 @@ export default class ChatService {
       sentAt: serverTimestamp(),
     })
     return {
-      id: newDoc.id
+      id: newDoc.id,
     }
   }
 
