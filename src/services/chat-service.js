@@ -51,7 +51,6 @@ export default class ChatService {
     const [messagesData] = messagesQuery.docs.map((doc) => {
       return { ...doc.data(), id: doc.id }
     })
-    console.log(messagesData)
     return messagesData
   }
 
@@ -65,7 +64,6 @@ export default class ChatService {
     const unsub = onSnapshot(q, (qSnapshot) => {
       const chatsData = []
       qSnapshot.forEach((doc) => chatsData.push({ ...doc.data(), id: doc.id }))
-      console.log('Updated messages', chatsData)
       setter(chatsData)
     })
     return unsub
