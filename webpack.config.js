@@ -3,6 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js', // Adjust the entry point as needed
@@ -72,6 +73,11 @@ module.exports = {
       template: './public/index.html', // Path to your HTML template
     }),
     new Dotenv(), // Add Dotenv plugin
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public', to: '', globOptions: { ignore: ['**/index.html'] } }, // Copy everything from public to dist except index.html
+      ],
+    }),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
