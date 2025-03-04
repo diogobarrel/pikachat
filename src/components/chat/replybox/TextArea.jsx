@@ -20,12 +20,15 @@ export default class textArea extends Component {
   componentDidMount() {
     this.eventbus.addListener('send-message', () => this.clear())
   }
+
+  componentWillUnmount() {
+    this.eventbus.removeListener('send-message', this.clear)
+  }
   
   handleKeyDown = (input) => {
-    const { key, code, charCode, ctrlKey, altKey } = input
+    const { key, ctrlKey } = input
     switch (key) {
       default:
-        console.log(key, code, charCode, ctrlKey, altKey)
         break
 
       case 'Enter':

@@ -95,13 +95,12 @@ export default class ChatService {
       chatId,
       'messages'
     )
-    const q = query(messagesRef, limit(20), orderBy('sentAt'))
+    const q = query(messagesRef, limit(200), orderBy('sentAt')) // TODO: adjust query, orderBy not working
     const unsub = onSnapshot(q, (qSnapshot) => {
       const messagesData = []
       qSnapshot.forEach((doc) =>
         messagesData.push({ ...doc.data(), id: doc.id })
       )
-      console.log('Updated messages', messagesData)
       setter(messagesData)
     })
     return unsub

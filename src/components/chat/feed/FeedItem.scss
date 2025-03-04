@@ -1,0 +1,37 @@
+.chat-feed {
+    display: flex;
+    flex-flow: column;
+    // justify-content: flex-end;
+    width: 65%;
+    padding: 10px;
+}
+
+.feed-mesage {
+  display: flex;
+  max-width: 60%;
+}
+
+.feed-item * p {
+  margin: 0;
+}
+
+.feed-item__message-text {
+    font-size: 12px;
+    text-align: center;
+    text-indent: 15px;
+    align-self: flex-start;
+    place-self: start;
+}
+
+.feed-item__sent_at {
+  display: flex;
+  flex-flow: row;
+  place-self: flex-end;
+  font-size: 10px;
+  margin-right: 5px;
+  white-space: break-spaces;
+}
+
+.feed-item__sent_at_time {
+  color: #ff9800;
+}

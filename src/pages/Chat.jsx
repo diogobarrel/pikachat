@@ -28,8 +28,8 @@ export default class Chat extends Component {
   }
 
   async componentDidMount() {
-    this.chatEventBus.addListener('send-message', ({ text }) => {
-      this.chatAPI.sendMessage({
+    this.chatEventBus.addListener('send-message', async ({ text }) => {
+      await this.chatAPI.sendMessage({
         userId: this.props.user.uid,
         chatId: this.state.activeChat.id,
         text,
@@ -54,7 +54,7 @@ export default class Chat extends Component {
   }
 
   invite(email) {
-    console.log(email)
+    console.log('Inviting ', email)
   }
 
   render() {

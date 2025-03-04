@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Stack } from '@mui/material'
 
 import FeedItem from './FeedItem'
+import './FeedItem.scss'
 
 export default function Feed(props) {
   const messages = useSelector((state) => state.messageStore.messages)
@@ -20,7 +21,7 @@ export default function Feed(props) {
 
   return (
     <>
-      <Stack spacing={2}>
+      <Stack spacing={1} className='chat-feed' id='chat-feed'>
         {messages &&
           messages.map((message) => (
             <FeedItem key={message.id} message={message}></FeedItem>

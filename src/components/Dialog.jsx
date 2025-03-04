@@ -16,8 +16,7 @@ const InviteDialog = (props) => {
   const [dialog, setDialog] = useState(false)
   const { eventbus } = props
 
-  const message =
-    'A pessoa receberá um email para criar sua conta e conversar com você'
+  // const message = 'A pessoa receberá um email para criar sua conta e conversar com você'
   const title = 'Convide alguém para iniciar uma conversa!'
   const close = () => setDialog(false)
 
@@ -26,7 +25,7 @@ const InviteDialog = (props) => {
     return () => {
       eventbus.removeListener('toggle-invite', (value) => setDialog(value))
     }
-  }, [])
+  }, [eventbus])
 
   const handleSubmit = (e) => {
     e.preventDefault()
